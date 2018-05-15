@@ -26,8 +26,8 @@ class ContractController extends Controller
         $user = User::user();
 
         $abi = config('constants.abi');
-        $web3 = new Web3(config('constants.app-uri'));
         $contractAddress = config('constants.contract-address');
+        $contract = new Contract(config('constants.app-uri'), $abi);
         $fromAccount = '0x82c0ce8a0562f8cd551d4e940afe8efa1dbe00ab';
 
         $sellers_users = User::getUsersByPhones($sellers);
