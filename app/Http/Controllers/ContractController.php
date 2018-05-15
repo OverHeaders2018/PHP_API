@@ -42,6 +42,6 @@ class ContractController extends Controller
             });
         });
 
-//        return response()->json(['result' => $contract], 200);
+        return response()->json(['result' => $eth], 200);
     }
 }
