@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use http\Exception;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
@@ -14,7 +15,7 @@ class UserController extends Controller
 
         try {
             $token = JWTAuth::attempt($credentials);
-        } catch (Exception $e) {
+        } catch (JWTException $e) {
             return response()->json(['error' => 'not_valid'], 401);
         }
 
