@@ -67,7 +67,7 @@ class ContractController extends Controller
        "outputs": [
            {
                "name": "",
-               "type": "bytes32"
+               "type": "string"
            }
        ],
        "payable": false,
