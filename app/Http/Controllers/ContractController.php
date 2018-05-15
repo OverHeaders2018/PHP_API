@@ -123,9 +123,9 @@ class ContractController extends Controller
             // get balance
             $contract->at($contractAddress)->call('dummy', 'koko',function($err, $balance) use (&$promise) {
                 if ($err !== null) {
-
                     return response()->json(['error' => $err->getMessage()], 401);
                 }
+                die(var_dump($balance, true));
                 $promise->resolve(['balance' => $balance, 'error' => $err]);
             });
         });
