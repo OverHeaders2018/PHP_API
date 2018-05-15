@@ -28,10 +28,22 @@ class ContractController extends Controller
 
         $web3 = new Web3(new HttpProvider(new HttpRequestManager('http://bchxee-dns-reg1.westeurope.cloudapp.azure.com:8545')));
 
-        $web3->eth->dummy('koko', function($result, $error) {
-            return response()->json(['result' => $result, 'error' => $error], 200);
-        });
+        $eth = $web3->eth;
+        $eth->accounts(function ($err, $accounts) use ($eth) {
+            if ($err !== null) {
+                echo 'Error: ' . $err->getMessage();
+                return;
+            }
+            $fromAccount = $accounts[0];
+            // get balance
+            $eth->getBalance($fromAccount, function ($err, $balance) use ($fromAccount) {
+                if ($err !== null) {
+                    return response()->json(['error' => $err->getMessage()], 401);
+                }
 
+                return response()->json(['account' => $fromAccount, 'balance' => $balance], 200);
+            });
+        });
 //        return response()->json(['result' => $contract], 200);
     }
 }
