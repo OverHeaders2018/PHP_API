@@ -3,12 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use http\Exception;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
     public function login() {
+        $credentials = request()->only('email', 'password');
 
+        try {
+            $token = JWTAuth::attempt($credentials);
+        } catch (Exception $e) {
+            return response()->json(['error' => 'not_valid'], 401);
+        }
+
+        return response()->json(['token' => $token], 200);
     }
 
     public function register() {
