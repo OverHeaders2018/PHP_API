@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('try', function() {
-    return 'Hello';
+    return response()->json(['result' => 'success'], 200);
 });
