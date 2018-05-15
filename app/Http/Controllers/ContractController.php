@@ -119,9 +119,11 @@ class ContractController extends Controller
         $fromAccount = '0x82c0ce8a0562f8cd551d4e940afe8efa1dbe00ab';
 
 
-        $promise = new Promise(function () use (&$promise, $contract, $contractAddress) {
+        $promise = new Promise(function () use (&$promise, $contract, $contractAddress, $fromAccount) {
             // get balance
-            $contract->at($contractAddress)->call('dummy', 'koko', function($err, $balance) use (&$promise) {
+            $contract->at($contractAddress)->call('dummy', 'koko', [
+                'from' => $fromAccount
+            ],function($err, $balance) use (&$promise) {
                 if ($err !== null) {
 
                     return response()->json(['error' => $err->getMessage()], 401);
