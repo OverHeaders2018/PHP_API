@@ -9,41 +9,28 @@ use App\User;
 use Illuminate\Http\Request;
 use JWTAuth;
 
+use Web3\Web3;
+use Web3\Providers\HttpProvider;
+use Web3\RequestManagers\HttpRequestManager;
+use Web3\Eth;
+
+
 class ContractController extends Controller
 {
     public function store() {
-        $file = isset(request()->file) ? request()->file : null;
-        $sellers = isset(request()->sellers) ? request()->sellers : null;
-        $buyers = isset(request()->buyers) ? request()->buyers : null;
-        $user = User::user();
+//        $file = isset(request()->file) ? request()->file : null;
+//        $sellers = isset(request()->sellers) ? request()->sellers : null;
+//        $buyers = isset(request()->buyers) ? request()->buyers : null;
+//        $user = User::user();
 
-        $contract = new Contract;
-        $contract->file = $file;
+//        $contract = new Contract;
+//        $contract->file = $file;
 
-        $user->contracts()->save($contract);
+        $web3 = new Web3(new HttpProvider(new HttpRequestManager('http://bchxee-dns-reg1.westeurope.cloudapp.azure.com:8545')));
 
-        foreach ($sellers as $phone) {
-            $u = User::where('phone', $phone)->first();
-            $seller = Seller::create([
-                'user_id' => $u->id
-            ]);
-
-            if ($seller) {
-                $contract->sellers()->save($seller);
-            }
-        }
-
-        foreach ($buyers as $phone) {
-            $u = User::where('phone', $phone)->first();
-            $buyer = Buyer::create([
-                'user_id' => $u->id
-            ]);
-
-            if ($buyer) {
-                $contract->sellers()->save($buyer);
-            }
-        }
-
+        $web3->eth->dummy('koko', function($result, $error) {
+            return response()->json(['result' => $result, 'error' => $error], 200);
+        });
 
         return response()->json(['result' => $contract], 200);
     }
