@@ -113,7 +113,7 @@ class ContractController extends Controller
        "type": "function"
    }
 ]';
-        $contractAddress = '0xe998769e85d8634ad66df276e089ccbd85e8347d';
+        $contractAddress = '0xcb0a4b8186728c92827b8041ab55c339225f0c12';
 
         $contract = new Contract('http://bchxee-dns-reg1.westeurope.cloudapp.azure.com:8545', $abi);
         $fromAccount = '0x82c0ce8a0562f8cd551d4e940afe8efa1dbe00ab';
