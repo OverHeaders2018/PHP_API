@@ -41,4 +41,14 @@ class User extends Authenticatable
         $token = JWTAuth::getToken();
         return JWTAuth::toUser($token);
     }
+
+    static function getUsersByPhones($phones) {
+        $users = [];
+        foreach ($phones as $phone) {
+            $user = User::where('phone', $phone)->first();
+            $users[] = $user;
+        }
+
+        return $users;
+    }
 }
