@@ -31,8 +31,7 @@ class ContractController extends Controller
         $eth = $web3->eth;
         $eth->accounts(function ($err, $accounts) use ($eth) {
             if ($err !== null) {
-                echo 'Error: ' . $err->getMessage();
-                return;
+                return response()->json(['error' => $err->getMessage()], 401);
             }
             $fromAccount = $accounts[0];
             // get balance
