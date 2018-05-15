@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use JWTAuth;
+
 
 class User extends Authenticatable
 {
@@ -26,4 +28,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password'
     ];
+
+    public function contracts() {
+        return $this->hasMany('App\Contract');
+    }
+
+    public function seller() {
+
+    }
+
+    static function user() {
+        $token = JWTAuth::getToken();
+        return JWTAuth::toUser($token);
+    }
 }
