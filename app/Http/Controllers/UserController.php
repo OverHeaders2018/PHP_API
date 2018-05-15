@@ -29,16 +29,21 @@ class UserController extends Controller
         $last_name = isset(request()->last_name) ? request()->last_name: null;
         $device_token = isset(request()->device_token) ? request()->device_token : null;
 
-        $user = User::create([
-            'email' => $email,
-            'password' => bcrypt($password),
-            'first_name' => $first_name,
-            'last_name' => $last_name,
-            'phone' => $phone,
-            'device_token' => $device_token
-        ]);
+        try {
+            $user = User::create([
+                'email' => $email,
+                'password' => bcrypt($password),
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'phone' => $phone,
+                'device_token' => $device_token
+            ]);
 
-        $token = JWTAuth::fromUser($user);
+            $token = JWTAuth::fromUser($user);
+        } catch (Exception $e) {
+            return response()->json(['error' => 'user_exists'], 401);
+        }
+
 
         return response()->json(['token' => $token], 200);
     }
