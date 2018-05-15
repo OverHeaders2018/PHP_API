@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\User;
 use http\Exception;
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
 
 class UserController extends Controller
@@ -30,7 +29,7 @@ class UserController extends Controller
         $last_name = isset(request()->last_name) ? request()->last_name: null;
         $device_token = isset(request()->device_token) ? request()->device_token : null;
 
-        User::create([
+        $user = User::create([
             'email' => $email,
             'password' => bcrypt($password),
             'first_name' => $first_name,
@@ -39,6 +38,8 @@ class UserController extends Controller
             'device_token' => $device_token
         ]);
 
-        return response()->json(['result' => 'success'], 200);
+        $token = JWTAuth::fromUser($user);
+
+        return response()->json(['token' => $token], 200);
     }
 }
