@@ -125,8 +125,8 @@ class ContractController extends Controller
                 if ($err !== null) {
                     return response()->json(['error' => $err->getMessage()], 401);
                 }
-                die("asd");
                 die(var_dump($balance, true));
+                die();
 //                $promise->resolve(['balance' => $balance, 'error' => $err]);
             });
 //        });
