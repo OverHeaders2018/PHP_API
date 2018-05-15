@@ -42,7 +42,6 @@ class ContractController extends Controller
             });
         });
 
-        sleep(5);
 //        return response()->json(['result' => $contract], 200);
     }
 }
