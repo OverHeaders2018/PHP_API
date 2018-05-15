@@ -26,7 +26,8 @@ class ContractController extends Controller
 //        $contract = new Contract;
 //        $contract->file = $file;
 
-        $eth = new Eth('http://bchxee-dns-reg1.westeurope.cloudapp.azure.com:8545');
+        $web3 = new Web3('http://bchxee-dns-reg1.westeurope.cloudapp.azure.com:8545');
+        $eth = $web3->getEth();
         $eth->accounts(function ($err, $accounts) use ($eth) {
             if ($err !== null) {
                 return response()->json(['error' => $err->getMessage()], 401);
