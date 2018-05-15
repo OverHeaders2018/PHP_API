@@ -54,8 +54,8 @@ class ContractController extends Controller
 
     public function dummy()
     {
-        $abi = (object)[
-            [
+        $abi = [
+            (object)[
                 'constant' => false,
                 'inputs' => [
                     [
@@ -74,7 +74,7 @@ class ContractController extends Controller
                 'stateMutability' => 'nonpayable',
                 'type' => 'function'
             ],
-            [
+            (object)[
                 'constant' => false,
                 'inputs' => [
                     [
@@ -93,7 +93,7 @@ class ContractController extends Controller
                 'stateMutability' => 'nonpayable',
                 'type' => 'function'
             ],
-            [
+            (object)[
                 'constant' => false,
                 'inputs' => [
                     [
