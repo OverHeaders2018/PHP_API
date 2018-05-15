@@ -12,7 +12,7 @@ class UserController extends Controller
     }
 
     public function register() {
-        $email = isset(request()->device_token) ? request()->device_token : null;
+        $email = isset(request()->email) ? request()->email: null;
         $password = isset(request()->password) ? request()->password : null;
         $phone = isset(request()->phone) ? request()->phone: null;
         $first_name = isset(request()->first_name) ? request()->first_name: null;
