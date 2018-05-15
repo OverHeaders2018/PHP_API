@@ -13,6 +13,8 @@ use Web3\Web3;
 use Web3\Providers\HttpProvider;
 use Web3\RequestManagers\HttpRequestManager;
 use Web3\Eth;
+use GuzzleHttp\Promise\Promise;
+
 
 
 class ContractController extends Controller
@@ -25,24 +27,28 @@ class ContractController extends Controller
 
 //        $contract = new Contract;
 //        $contract->file = $file;
-
         $web3 = new Web3('http://bchxee-dns-reg1.westeurope.cloudapp.azure.com:8545');
         $eth = $web3->getEth();
-        $eth->accounts(function ($err, $accounts) use ($eth) {
-            if ($err !== null) {
-                return response()->json(['error' => $err->getMessage()], 401);
-            }
-            $fromAccount = $accounts[0];
-            // get balance
-            $eth->getBalance($fromAccount, function ($err, $balance) use ($fromAccount) {
+
+        $promise = new Promise(function () use (&$promise, $eth) {
+            $eth->accounts(function ($err, $accounts) use ($eth, &$promise) {
                 if ($err !== null) {
                     return response()->json(['error' => $err->getMessage()], 401);
                 }
+                $fromAccount = $accounts[0];
+                // get balance
+                $eth->getBalance($fromAccount, function ($err, $balance) use ($fromAccount, &$promise) {
+                    if ($err !== null) {
 
-                return response()->json(['account' => $fromAccount, 'balance' => $balance], 200);
+                        return response()->json(['error' => $err->getMessage()], 401);
+                    }
+
+                    $promise->resolve(['account' => $fromAccount, 'balance' => $balance]);
+                });
             });
         });
 
-        return response()->json(['result' => $eth], 200);
+// Calling wait will return the value of the promise.
+        return response()->json($promise->wait(), 200);
     }
 }
