@@ -6,7 +6,7 @@ use App\User;
 use http\Exception;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\JWTAuth;
+use JWTAuth;
 
 class UserController extends Controller
 {
