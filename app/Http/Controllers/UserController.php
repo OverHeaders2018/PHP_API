@@ -13,9 +13,9 @@ class UserController extends Controller
     public function login() {
         $credentials = request()->only('email', 'password');
 
-        try {
-            $token = JWTAuth::attempt($credentials);
-        } catch (JWTException $e) {
+        $token = JWTAuth::attempt($credentials);
+
+        if (!$token) {
             return response()->json(['error' => 'not_valid'], 401);
         }
 
