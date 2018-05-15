@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,5 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('try', function() {
-    return response()->json(['result' => 'success'], 200);
-});
+Route::post('login', 'UserController@login');
+Route::post('register', 'UserController@register');
