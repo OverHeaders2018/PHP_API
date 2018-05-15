@@ -43,6 +43,8 @@ class ContractController extends Controller
                 return response()->json(['account' => $fromAccount, 'balance' => $balance], 200);
             });
         });
+
+        sleep(5);
 //        return response()->json(['result' => $contract], 200);
     }
 }
