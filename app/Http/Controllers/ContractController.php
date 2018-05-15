@@ -54,7 +54,7 @@ class ContractController extends Controller
 
     public function dummy()
     {
-        $abi = [
+        $abi = (object)[
             [
                 'constant' => false,
                 'inputs' => [
