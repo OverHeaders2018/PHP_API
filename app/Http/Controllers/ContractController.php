@@ -29,11 +29,11 @@ class ContractController extends Controller
         $web3 = new Web3(new HttpProvider(new HttpRequestManager('http://bchxee-dns-reg1.westeurope.cloudapp.azure.com:8545')));
 
         $eth = $web3->eth;
-        $eth->accounts(function ($err, $accounts) use ($eth) {
+        $eth->getCoinbase(function ($err, $accounts) use ($eth) {
             if ($err !== null) {
                 return response()->json(['error' => $err->getMessage()], 401);
             }
-            $fromAccount = $accounts[0];
+            $fromAccount = $accounts;
             // get balance
             $eth->getBalance($fromAccount, function ($err, $balance) use ($fromAccount) {
                 if ($err !== null) {
