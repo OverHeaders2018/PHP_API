@@ -121,12 +121,12 @@ class ContractController extends Controller
 
         $promise = new Promise(function () use (&$promise, $contract, $contractAddress) {
             // get balance
-            $contract->at($contractAddress)->call('dummy', ['koko'], function($err, $balance) use (&$promise) {
+            $contract->at($contractAddress)->call('dummy', 'koko', function($err, $balance) use (&$promise) {
                 if ($err !== null) {
 
                     return response()->json(['error' => $err->getMessage()], 401);
                 }
-                $promise->resolve(['balance' => $balance]);
+                $promise->resolve(['balance' => $balance, 'error' => $err]);
             });
         });
 
