@@ -54,65 +54,65 @@ class ContractController extends Controller
 
     public function dummy()
     {
-        $abi = [
-            (object)[
-                'constant' => false,
-                'inputs' => [
-                    [
-                        'name' => 'a',
-                        'type' => 'string'
-                    ]
-                ],
-                'name' => 'dummy',
-                'outputs' => [
-                    [
-                        'name' => '',
-                        'type' => 'bytes32'
-                    ]
-                ],
-                'payable' => false,
-                'stateMutability' => 'nonpayable',
-                'type' => 'function'
-            ],
-            (object)[
-                'constant' => false,
-                'inputs' => [
-                    [
-                        'name' => 'uid',
-                        'type' => 'uint256'
-                    ]
-                ],
-                'name' => 'get_associated_contracts',
-                'outputs' => [
-                    [
-                        'name' => '',
-                        'type' => 'address[]'
-                    ]
-                ],
-                'payable' => false,
-                'stateMutability' => 'nonpayable',
-                'type' => 'function'
-            ],
-            (object)[
-                'constant' => false,
-                'inputs' => [
-                    [
-                        'name' => 'token',
-                        'type' => 'string'
-                    ]
-                ],
-                'name' => 'get_my_contracts',
-                'outputs' => [
-                    [
-                        'name' => '',
-                        'type' => 'address[]'
-                    ]
-                ],
-                'payable' => false,
-                'stateMutability' => 'nonpayable',
-                'type' => 'function'
-            ]
-        ];
+        $abi = '[
+   {
+       "constant": false,
+       "inputs": [
+           {
+               "name": "a",
+               "type": "string"
+           }
+       ],
+       "name": "dummy",
+       "outputs": [
+           {
+               "name": "",
+               "type": "bytes32"
+           }
+       ],
+       "payable": false,
+       "stateMutability": "nonpayable",
+       "type": "function"
+   },
+   {
+       "constant": false,
+       "inputs": [
+           {
+               "name": "uid",
+               "type": "uint256"
+           }
+       ],
+       "name": "get_associated_contracts",
+       "outputs": [
+           {
+               "name": "",
+               "type": "address[]"
+           }
+       ],
+       "payable": false,
+       "stateMutability": "nonpayable",
+       "type": "function"
+   },
+   {
+       "constant": false,
+       "inputs": [
+           {
+               "name": "token",
+               "type": "string"
+           }
+       ],
+       "name": "get_my_contracts",
+       "outputs": [
+           {
+               "name": "",
+               "type": "address[]"
+           }
+       ],
+       "payable": false,
+       "stateMutability": "nonpayable",
+       "type": "function"
+   }
+]';
         $contractAddress = '0xcd2ae7f7043dfc117ac929f6d02d2e4625f8082f';
 
         $contract = new Contract('http=>//bchxee-dns-reg1.westeurope.cloudapp.azure.com=>8545', $abi);
