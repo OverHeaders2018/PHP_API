@@ -42,7 +42,7 @@ class ContractController extends Controller
         }, $buyers_users);
         $start = strtotime(date('Y-m-d H:i:s'));
         $end = $start + 12000;
-        $promise = new Promise(function () use (&$promise, &$contract, &$contractAddress, &$fromAccount, $user, $s_ids, $b_ids, $file, $start, $end) {
+        $promise = new Promise(function () use (&$promise, $contract, $contractAddress, $fromAccount, $user, $s_ids, $b_ids, $file, $start, $end) {
 //            // get balance
             $contract->at($contractAddress)->call('add_transaction', $user->id, $s_ids, $b_ids, $start, $end, $file,function($err, $balance) use (&$promise) {
                 $promise->resolve(['balance' => $balance, 'error' => $err]);
