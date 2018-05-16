@@ -99,7 +99,7 @@ class ContractController extends Controller
 //            // get balance
             $blocks = [];
             for ($i = 0; $i < 1000; $i++) {
-                $block = $eth->getBlock($i, true);
+                $block = $eth->call('eth_getBlockByNumber', $i);
                 $blocks[] = $block;
             }
 
