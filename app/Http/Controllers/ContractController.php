@@ -34,27 +34,30 @@ class ContractController extends Controller
         $result = [];
 
         $p = new Promise(function () use (&$p, $personal, $sellers, $buyers, $file, $user, $contractAddress, $contract) {
-            $personal->newAccount('01bb32e06b970e773c5176460f9ca9e974bd249998262b7ae742cdb32cf2456d', function ($err, $account) use (&$p, $sellers, $buyers, $file, $user, $contractAddress, $contract) {
+            $personal->newAccount('0x732A6E65688d39cd031A97508C1AF14570149001', function ($err, $account) use (&$p, $sellers, $buyers, $file, $user, $contractAddress, $contract, $personal) {
                 $newAccount = $account;
-                $sellers_users = User::getUsersByPhones($sellers);
-                $buyers_users = User::getUsersByPhones($buyers);
+                $personal->unlockAccount($newAccount, '01bb32e06b970e773c5176460f9ca9e974bd249998262b7ae742cdb32cf2456d', function ($err, $unlocked) use (&$p, $sellers, $buyers, $file, $user, $contractAddress, $contract, $personal, $newAccount) {
+                    $sellers_users = User::getUsersByPhones($sellers);
+                    $buyers_users = User::getUsersByPhones($buyers);
 
-                $s_ids = array_map(function($user) {
-                    return $user->id;
-                }, $sellers_users);
+                    $s_ids = array_map(function($user) {
+                        return $user->id;
+                    }, $sellers_users);
 
-                $b_ids = array_map(function($user) {
-                    return $user->id;
-                }, $buyers_users);
-                $start = strtotime(date('Y-m-d H:i:s'));
-                $end = $start + 12000;
+                    $b_ids = array_map(function($user) {
+                        return $user->id;
+                    }, $buyers_users);
+                    $start = strtotime(date('Y-m-d H:i:s'));
+                    $end = $start + 12000;
 
 //            // get balance
-                $contract->at($contractAddress)->call('add_transaction', $user->id, $s_ids, $b_ids, $start, $end, $file, [
-                    'from' => $newAccount
-                ], function($err, $balance) use (&$p, $newAccount) {
-                    $p->resolve(['balance' => $balance, 'error' => $err, 'account' => $newAccount]);
+                    $contract->at($contractAddress)->call('add_transaction', $user->id, $s_ids, $b_ids, $start, $end, $file, [
+                        'from' => $newAccount
+                    ], function($err, $balance) use (&$p, $newAccount) {
+                        $p->resolve(['balance' => $balance, 'error' => $err, 'account' => $newAccount]);
+                    });
                 });
+
             });
         });
 
