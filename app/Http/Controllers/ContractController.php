@@ -45,11 +45,9 @@ class ContractController extends Controller
 //            // get balance
             $start = strtotime(date('Y-m-d H:i:s'));
             $end = $start + 12000;
-            $contract->at($contractAddress)->call('add_transaction', $user->id, $s_ids, $b_ids, $start, $end, $file, [
-                'from' => $fromAccount
-            ],function($err, $balance) use (&$promise) {
+            $contract->at($contractAddress)->call('add_transaction', $user->id, $s_ids, $b_ids, $start, $end, $file,function($err, $balance) use (&$promise) {
                 if ($err !== null) {
-                    $promise->reject(['error' => $err]);
+                    return response()->json(['error' => $err->getMessage(), 401);
                 }
 
                 $promise->resolve(['balance' => $balance, 'error' => $err]);
