@@ -274,5 +274,5 @@ return [
     }
 ]',
     'app-uri' => 'http://bchxee-dns-reg1.westeurope.cloudapp.azure.com:8545',
-    'contract-address' => '0x7f51a014a97126e391a4d44102f7e6dc6e395005',
+    'contract-address' => '0x9c049212c5ffc4738f809493a8ea105d871480ce',
 ];
