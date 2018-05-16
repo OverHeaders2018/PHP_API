@@ -40,21 +40,10 @@ class ContractController extends Controller
         $b_ids = array_map(function($user) {
             return $user->id;
         }, $buyers_users);
-
-        $promise = new Promise(function () use (&$promise, &$contract, &$contractAddress, &$fromAccount, $user, $s_ids, $b_ids, $file) {
+        $start = strtotime(date('Y-m-d H:i:s'));
+        $end = $start + 12000;
+        $promise = new Promise(function () use (&$promise, &$contract, &$contractAddress, &$fromAccount, $user, $s_ids, $b_ids, $file, $start, $end) {
 //            // get balance
-            $start = strtotime(date('Y-m-d H:i:s'));
-            $end = $start + 12000;
-            die(
-                var_dump([
-                    'a' => $start,
-                    'b' => $end,
-                    'c' => $s_ids,
-                    'd' => $b_ids,
-                    'e' => $file,
-                    'h' => $user->id
-                ])
-            );
             $contract->at($contractAddress)->call('add_transaction', $user->id, $s_ids, $b_ids, $start, $end, $file,function($err, $balance) use (&$promise) {
                 $promise->resolve(['balance' => $balance, 'error' => $err]);
             });
