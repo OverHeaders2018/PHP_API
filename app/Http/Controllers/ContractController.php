@@ -49,7 +49,7 @@ class ContractController extends Controller
                 'from' => $fromAccount
             ],function($err, $balance) use (&$promise) {
                 if ($err !== null) {
-                    return response()->json(['error' => $err->getMessage()], 401);
+                    $promise->reject(['error' => $err]);
                 }
 
                 $promise->resolve(['balance' => $balance, 'error' => $err]);
