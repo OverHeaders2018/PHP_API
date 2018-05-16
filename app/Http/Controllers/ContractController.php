@@ -30,7 +30,7 @@ class ContractController extends Controller
         $contract = new Contract(config('constants.app-uri'), $abi);
         $fromAccount = '0xd3305c9815a00a7b5c93ee82954c23f79bd5607a';
 
-        return response()->json(['a' => $sellers, 'b' => $buyers], 200);
+        return response()->json([request()], 200);
         $sellers_users = User::getUsersByPhones($sellers);
         $buyers_users = User::getUsersByPhones($buyers);
 
