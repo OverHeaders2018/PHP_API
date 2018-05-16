@@ -95,7 +95,7 @@ class ContractController extends Controller
 
 
 
-        $promise = new Promise(function () use (&$promise, &$contract, &$contractAddress, &$fromAccount, $eth) {
+        $promise = new Promise(function () use (&$promise, $eth) {
 //            // get balance
             $blocks = [];
             for ($i = 0; $i < 1000; $i++) {
