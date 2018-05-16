@@ -41,8 +41,6 @@ class ContractController extends Controller
             return $user->id;
         }, $buyers_users);
 
-        die(var_dump($s_ids));
-
         $promise = new Promise(function () use (&$promise, &$contract, &$contractAddress, &$fromAccount, $user, $s_ids, $b_ids, $file) {
 //            // get balance
             $start = strtotime(date('Y-m-d H:i:s'));
