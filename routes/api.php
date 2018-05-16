@@ -20,3 +20,4 @@ Route::post('contracts', 'ContractController@store');
 Route::get('contracts/{id}/sign', 'ContractController@update');
 Route::get('contracts', 'ContractController@index');
 Route::get('dummy', 'ContractController@dummy');
+Route::post('device', 'UserController@device');

@@ -47,4 +47,19 @@ class UserController extends Controller
 
         return response()->json(['token' => $token], 200);
     }
+
+    public function device() {
+        $device_token = isset(request()->device_token) ? request()->device_token : null;
+
+        if ($device_token == null) {
+            return response()->json(['error' => 'no_device_token'], 401);
+        }
+
+        $user = User::user();
+        $user->device_token = $device_token;
+
+        $user->save();
+
+        return response()->json(['result' => 'success'], 200);
+    }
 }
