@@ -47,7 +47,7 @@ class ContractController extends Controller
             $end = $start + 12000;
             $contract->at($contractAddress)->call('add_transaction', $user->id, $s_ids, $b_ids, $start, $end, $file,function($err, $balance) use (&$promise) {
                 if ($err !== null) {
-                    return response()->json(['error' => $err->getMessage(), 401);
+                    return response()->json(['error' => $err->getMessage()], 401);
                 }
 
                 $promise->resolve(['balance' => $balance, 'error' => $err]);
