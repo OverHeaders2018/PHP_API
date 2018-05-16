@@ -28,7 +28,7 @@ class ContractController extends Controller
         $abi = config('constants.abi');
         $contractAddress = config('constants.contract-address');
         $contract = new Contract(config('constants.app-uri'), $abi);
-        $fromAccount = '0x3d64df54a5e0697ce9672283730222741b0c4e0d';
+        $fromAccount = '0xd3305c9815a00a7b5c93ee82954c23f79bd5607a';
 
         $sellers_users = User::getUsersByPhones($sellers);
         $buyers_users = User::getUsersByPhones($buyers);
@@ -89,7 +89,7 @@ class ContractController extends Controller
         $web3 = new Web3(config('constants.app-uri'));
         $eth = $web3->getEth();
 
-        $fromAccount = '0x3d64df54a5e0697ce9672283730222741b0c4e0d';
+        $fromAccount = '0xd3305c9815a00a7b5c93ee82954c23f79bd5607a';
 
 
 
