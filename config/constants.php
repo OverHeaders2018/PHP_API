@@ -236,5 +236,5 @@ return [
 	}
 ]',
     'app-uri' => 'http://localhost:8545',
-    'contract-address' => '0x09182fa45cea38e7a00670da1e01fab319962f79',
+    'contract-address' => '0x36a7ffaef0c2521232370927bfb5f880fff1d238',
 ];

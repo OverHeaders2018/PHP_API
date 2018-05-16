@@ -43,7 +43,6 @@ class User extends Authenticatable
     }
 
     static function getUsersByPhones($phones) {
-        die(var_dump($phones));
         $users = [];
         foreach ($phones as $phone) {
             $user = User::where('phone', $phone)->first();
