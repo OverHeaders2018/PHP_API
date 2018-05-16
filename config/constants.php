@@ -8,271 +8,271 @@
 
 return [
     'abi' => '[
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "ownerId",
-                "type": "uint256"
-            },
-            {
-                "name": "sellerIds",
-                "type": "uint256[]"
-            },
-            {
-                "name": "buyerIds",
-                "type": "uint256[]"
-            },
-            {
-                "name": "startTimeInMillis",
-                "type": "uint256"
-            },
-            {
-                "name": "endTimeInMillis",
-                "type": "uint256"
-            },
-            {
-                "name": "contractFileStr",
-                "type": "string"
-            }
-        ],
-        "name": "add_transaction",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [],
-        "name": "dummy",
-        "outputs": [
-            {
-                "components": [
-                    {
-                        "name": "contractId",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "ownerId",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "sellerIds",
-                        "type": "uint256[]"
-                    },
-                    {
-                        "name": "sellerSigned",
-                        "type": "bool[]"
-                    },
-                    {
-                        "name": "buyerIds",
-                        "type": "uint256[]"
-                    },
-                    {
-                        "name": "buyerSigned",
-                        "type": "bool[]"
-                    },
-                    {
-                        "name": "startTimeInMillis",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "endTimeInMillis",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "contractFileStr",
-                        "type": "string"
-                    }
-                ],
-                "name": "",
-                "type": "tuple"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "uid",
-                "type": "uint256"
-            }
-        ],
-        "name": "get_associated_contracts",
-        "outputs": [
-            {
-                "components": [
-                    {
-                        "name": "contractId",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "ownerId",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "sellerIds",
-                        "type": "uint256[]"
-                    },
-                    {
-                        "name": "sellerSigned",
-                        "type": "bool[]"
-                    },
-                    {
-                        "name": "buyerIds",
-                        "type": "uint256[]"
-                    },
-                    {
-                        "name": "buyerSigned",
-                        "type": "bool[]"
-                    },
-                    {
-                        "name": "startTimeInMillis",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "endTimeInMillis",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "contractFileStr",
-                        "type": "string"
-                    }
-                ],
-                "name": "",
-                "type": "tuple[]"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "userId",
-                "type": "uint256"
-            }
-        ],
-        "name": "get_my_contracts",
-        "outputs": [
-            {
-                "components": [
-                    {
-                        "name": "contractId",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "ownerId",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "sellerIds",
-                        "type": "uint256[]"
-                    },
-                    {
-                        "name": "sellerSigned",
-                        "type": "bool[]"
-                    },
-                    {
-                        "name": "buyerIds",
-                        "type": "uint256[]"
-                    },
-                    {
-                        "name": "buyerSigned",
-                        "type": "bool[]"
-                    },
-                    {
-                        "name": "startTimeInMillis",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "endTimeInMillis",
-                        "type": "uint256"
-                    },
-                    {
-                        "name": "contractFileStr",
-                        "type": "string"
-                    }
-                ],
-                "name": "",
-                "type": "tuple[]"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [],
-        "name": "pull_last_transaction",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            },
-            {
-                "name": "",
-                "type": "uint256"
-            },
-            {
-                "name": "",
-                "type": "uint256[]"
-            },
-            {
-                "name": "",
-                "type": "bool[]"
-            },
-            {
-                "name": "",
-                "type": "uint256[]"
-            },
-            {
-                "name": "",
-                "type": "bool[]"
-            },
-            {
-                "name": "",
-                "type": "uint256"
-            },
-            {
-                "name": "",
-                "type": "uint256"
-            },
-            {
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "userId",
-                "type": "uint256"
-            },
-            {
-                "name": "contractId",
-                "type": "uint256"
-            }
-        ],
-        "name": "sign_contract",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "ownerId",
+				"type": "uint256"
+			},
+			{
+				"name": "sellerIds",
+				"type": "uint256[]"
+			},
+			{
+				"name": "buyerIds",
+				"type": "uint256[]"
+			},
+			{
+				"name": "startTimeInMillis",
+				"type": "uint256"
+			},
+			{
+				"name": "endTimeInMillis",
+				"type": "uint256"
+			},
+			{
+				"name": "contractFileStr",
+				"type": "string"
+			}
+		],
+		"name": "add_transaction",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "dummy",
+		"outputs": [
+			{
+				"components": [
+					{
+						"name": "contractId",
+						"type": "uint256"
+					},
+					{
+						"name": "ownerId",
+						"type": "uint256"
+					},
+					{
+						"name": "sellerIds",
+						"type": "uint256[]"
+					},
+					{
+						"name": "sellerSigned",
+						"type": "bool[]"
+					},
+					{
+						"name": "buyerIds",
+						"type": "uint256[]"
+					},
+					{
+						"name": "buyerSigned",
+						"type": "bool[]"
+					},
+					{
+						"name": "startTimeInMillis",
+						"type": "uint256"
+					},
+					{
+						"name": "endTimeInMillis",
+						"type": "uint256"
+					},
+					{
+						"name": "contractFileStr",
+						"type": "string"
+					}
+				],
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "uid",
+				"type": "uint256"
+			}
+		],
+		"name": "get_associated_contracts",
+		"outputs": [
+			{
+				"components": [
+					{
+						"name": "contractId",
+						"type": "uint256"
+					},
+					{
+						"name": "ownerId",
+						"type": "uint256"
+					},
+					{
+						"name": "sellerIds",
+						"type": "uint256[]"
+					},
+					{
+						"name": "sellerSigned",
+						"type": "bool[]"
+					},
+					{
+						"name": "buyerIds",
+						"type": "uint256[]"
+					},
+					{
+						"name": "buyerSigned",
+						"type": "bool[]"
+					},
+					{
+						"name": "startTimeInMillis",
+						"type": "uint256"
+					},
+					{
+						"name": "endTimeInMillis",
+						"type": "uint256"
+					},
+					{
+						"name": "contractFileStr",
+						"type": "string"
+					}
+				],
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "userId",
+				"type": "uint256"
+			}
+		],
+		"name": "get_my_contracts",
+		"outputs": [
+			{
+				"components": [
+					{
+						"name": "contractId",
+						"type": "uint256"
+					},
+					{
+						"name": "ownerId",
+						"type": "uint256"
+					},
+					{
+						"name": "sellerIds",
+						"type": "uint256[]"
+					},
+					{
+						"name": "sellerSigned",
+						"type": "bool[]"
+					},
+					{
+						"name": "buyerIds",
+						"type": "uint256[]"
+					},
+					{
+						"name": "buyerSigned",
+						"type": "bool[]"
+					},
+					{
+						"name": "startTimeInMillis",
+						"type": "uint256"
+					},
+					{
+						"name": "endTimeInMillis",
+						"type": "uint256"
+					},
+					{
+						"name": "contractFileStr",
+						"type": "string"
+					}
+				],
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "pull_last_transaction",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256[]"
+			},
+			{
+				"name": "",
+				"type": "bool[]"
+			},
+			{
+				"name": "",
+				"type": "uint256[]"
+			},
+			{
+				"name": "",
+				"type": "bool[]"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "userId",
+				"type": "uint256"
+			},
+			{
+				"name": "contractId",
+				"type": "uint256"
+			}
+		],
+		"name": "sign_contract",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
 ]',
-    'app-uri' => 'http://bchxee-dns-reg1.westeurope.cloudapp.azure.com:8545',
-    'contract-address' => '0x9c049212c5ffc4738f809493a8ea105d871480ce',
+    'app-uri' => 'http://localhost:8545',
+    'contract-address' => '0x91c9d1cd9dea1c774c6ff7386df12e2d7bb9d77a',
 ];
