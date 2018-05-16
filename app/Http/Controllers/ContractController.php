@@ -84,4 +84,29 @@ class ContractController extends Controller
         return response()->json($promise->wait(), 200);
     }
 
+    public function index() {
+        $abi = config('constants.abi');
+        $contractAddress = config('constants.contract-address');
+
+        $web3 = new Web3(config('constants.app-uri'));
+        $eth = $web3->getEth();
+
+        $fromAccount = '0x82c0ce8a0562f8cd551d4e940afe8efa1dbe00ab';
+
+
+
+        $promise = new Promise(function () use (&$promise, &$contract, &$contractAddress, &$fromAccount, $eth) {
+//            // get balance
+            $blocks = [];
+            for ($i = 0; $i < 1000; $i++) {
+                $block = $eth->getBlock($i, true);
+                $blocks[] = $block;
+            }
+
+            $promise->resolve($blocks);
+        });
+
+        return response()->json($promise->wait(), 200);
+    }
+
 }
