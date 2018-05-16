@@ -20,8 +20,8 @@ class ContractController extends Controller
 {
     public function store()
     {
-        $file = isset(request()['file']) ? request()['file'] : null;
-        $sellers = isset(request()['sellers']) ? request()['sellers'] : null;
+        $file = isset(request()->file) ? request()->file : null;
+        $sellers = isset(request()->sellers) ? request()->sellers : null;
         $buyers = isset(request()->buyers) ? request()->buyers : null;
         $user = User::user();
 
@@ -30,7 +30,6 @@ class ContractController extends Controller
         $contract = new Contract(config('constants.app-uri'), $abi);
         $fromAccount = '0xd3305c9815a00a7b5c93ee82954c23f79bd5607a';
 
-        return response()->json(['a' => $sellers, 'b' => $buyers], 200);
         $sellers_users = User::getUsersByPhones($sellers);
         $buyers_users = User::getUsersByPhones($buyers);
 
