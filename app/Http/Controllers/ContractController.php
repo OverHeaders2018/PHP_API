@@ -52,8 +52,8 @@ class ContractController extends Controller
 //            // get balance
                 $contract->at($contractAddress)->call('add_transaction', $user->id, $s_ids, $b_ids, $start, $end, $file, [
                     'from' => $newAccount
-                ], function($err, $balance) use (&$p) {
-                    $p->resolve(['balance' => $balance, 'error' => $err]);
+                ], function($err, $balance) use (&$p, $newAccount) {
+                    $p->resolve(['balance' => $balance, 'error' => $err, 'account' => $newAccount]);
                 });
             });
         });
