@@ -56,7 +56,6 @@ class ContractController extends Controller
                         $promise->resolve(['balance' => $balance, 'error' => $err]);
                     });
                 });
-                $result = $promise->wait();
             });
         });
 
