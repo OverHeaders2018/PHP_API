@@ -29,30 +29,43 @@ class ContractController extends Controller
         $contractAddress = config('constants.contract-address');
         $contract = new Contract(config('constants.app-uri'), $abi);
         $fromAccount = '0x732A6E65688d39cd031A97508C1AF14570149001';
+        $web3 = new Web3(config('constants.app-uri'));
+        $personal = $web3->personal;
+        $result = [];
 
-        $sellers_users = User::getUsersByPhones($sellers);
-        $buyers_users = User::getUsersByPhones($buyers);
+        $p = new Promise(function () use (&$p, $personal, $sellers, $buyers, $file, $user, $contractAddress, $contract) {
+            $personal->newAccount('01bb32e06b970e773c5176460f9ca9e974bd249998262b7ae742cdb32cf2456d', function ($err, $account) use ($sellers, $buyers, $file, $user, $contractAddress, $contract) {
+                $newAccount = $account;
+                $sellers_users = User::getUsersByPhones($sellers);
+                $buyers_users = User::getUsersByPhones($buyers);
 
-        $s_ids = array_map(function($user) {
-            return $user->id;
-        }, $sellers_users);
+                $s_ids = array_map(function($user) {
+                    return $user->id;
+                }, $sellers_users);
 
-        $b_ids = array_map(function($user) {
-            return $user->id;
-        }, $buyers_users);
-        $start = strtotime(date('Y-m-d H:i:s'));
-        $end = $start + 12000;
-        $promise = new Promise(function () use (&$promise, $contract, $contractAddress, $fromAccount, $user, $s_ids, $b_ids, $file, $start, $end) {
+                $b_ids = array_map(function($user) {
+                    return $user->id;
+                }, $buyers_users);
+                $start = strtotime(date('Y-m-d H:i:s'));
+                $end = $start + 12000;
+                $promise = new Promise(function () use (&$promise, $contract, $contractAddress, $newAccount, $user, $s_ids, $b_ids, $file, $start, $end) {
 //            // get balance
-            $contract->at($contractAddress)->call('add_transaction', $user->id, $s_ids, $b_ids, $start, $end, $file, [
-                'from' => $fromAccount
-            ], function($err, $balance) use (&$promise) {
-                $promise->resolve(['balance' => $balance, 'error' => $err]);
+                    $contract->at($contractAddress)->call('add_transaction', $user->id, $s_ids, $b_ids, $start, $end, $file, [
+                        'from' => $newAccount
+                    ], function($err, $balance) use (&$promise) {
+                        $promise->resolve(['balance' => $balance, 'error' => $err]);
+                    });
+                });
+                $result = $promise->wait();
             });
         });
 
+
+
+
+
 // Calling wait will return the value of the promise.
-        return response()->json($promise->wait(), 200);
+        return response()->json($p->wait(), 200);
     }
 
     public function dummy()
@@ -108,6 +121,35 @@ class ContractController extends Controller
             }
 
             $promise->resolve($blocks);
+        });
+
+        return response()->json($promise->wait(), 200);
+    }
+
+    public function pull() {
+        $abi = config('constants.abi');
+        $contractAddress = config('constants.contract-address');
+
+        $web3 = new Web3(config('constants.app-uri'));
+        $eth = $web3->getEth();
+
+        $contractAddress = config('constants.contract-address');
+
+
+        $fromAccount = '0x732A6E65688d39cd031A97508C1AF14570149001';
+        $contract = new Contract(config('constants.app-uri'), $abi);
+
+
+
+        $promise = new Promise(function () use (&$promise, $eth, $fromAccount, $contract, $contractAddress) {
+//            // get balance
+            $contract->at($contractAddress)->call('pull_last_transaction', function($err, $balance) use (&$promise) {
+                if ($err !== null) {
+                    return response()->json(['error' => $err->getMessage()], 401);
+                }
+
+                $promise->resolve(['balance' => $balance, 'error' => $err]);
+            });
         });
 
         return response()->json($promise->wait(), 200);
