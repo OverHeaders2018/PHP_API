@@ -28,7 +28,7 @@ class ContractController extends Controller
         $abi = config('constants.abi');
         $contractAddress = config('constants.contract-address');
         $contract = new Contract(config('constants.app-uri'), $abi);
-        $fromAccount = '0xd3305c9815a00a7b5c93ee82954c23f79bd5607a';
+        $fromAccount = '0x732A6E65688d39cd031A97508C1AF14570149001';
 
         $sellers_users = User::getUsersByPhones($sellers);
         $buyers_users = User::getUsersByPhones($buyers);
@@ -44,7 +44,9 @@ class ContractController extends Controller
         $end = $start + 12000;
         $promise = new Promise(function () use (&$promise, $contract, $contractAddress, $fromAccount, $user, $s_ids, $b_ids, $file, $start, $end) {
 //            // get balance
-            $contract->at($contractAddress)->call('add_transaction', $user->id, $s_ids, $b_ids, $start, $end, $file,function($err, $balance) use (&$promise) {
+            $contract->at($contractAddress)->call('add_transaction', $user->id, $s_ids, $b_ids, $start, $end, $file, [
+                'from' => $fromAccount
+            ], function($err, $balance) use (&$promise) {
                 $promise->resolve(['balance' => $balance, 'error' => $err]);
             });
         });
@@ -84,7 +86,7 @@ class ContractController extends Controller
         $web3 = new Web3(config('constants.app-uri'));
         $eth = $web3->getEth();
 
-        $fromAccount = '0xd3305c9815a00a7b5c93ee82954c23f79bd5607a';
+        $fromAccount = '0x732A6E65688d39cd031A97508C1AF14570149001';
 
 
 
