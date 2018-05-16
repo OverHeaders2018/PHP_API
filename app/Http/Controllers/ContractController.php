@@ -52,7 +52,7 @@ class ContractController extends Controller
                     'c' => $s_ids,
                     'd' => $b_ids,
                     'e' => $file,
-                    'h' => $user
+                    'h' => $user->id
                 ])
             );
             $contract->at($contractAddress)->call('add_transaction', $user->id, $s_ids, $b_ids, $start, $end, $file,function($err, $balance) use (&$promise) {
