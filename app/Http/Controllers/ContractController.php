@@ -95,7 +95,7 @@ class ContractController extends Controller
             $blocks = [];
             for ($i = 0; $i < 1000; $i++) {
                 $p = new Promise(function () use (&$p, $eth, $i, $fromAccount) {
-                    $eth->call('eth_getBlockByNumber', $i, [
+                    $eth->call('eth_getBlockByNumber', $i, true, [
                         'from' => $fromAccount
                     ], function($err, $result) use ($p) {
                         if (!$err) {
