@@ -18,6 +18,6 @@ Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
 Route::post('contracts', 'ContractController@store');
 Route::get('contracts/{id}/sign', 'ContractController@update');
-Route::get('contracts', 'ContractController@pull');
+Route::get('contracts', 'ContractController@index');
 Route::get('dummy', 'ContractController@dummy');
 Route::post('device', 'UserController@device');

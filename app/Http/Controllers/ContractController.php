@@ -144,7 +144,7 @@ class ContractController extends Controller
 
         $promise = new Promise(function () use (&$promise, $eth, $fromAccount, $contract, $contractAddress) {
 //            // get balance
-            $contract->at($contractAddress)->call('pull_last_transaction', function($err, $balance) use (&$promise) {
+            $contract->at($contractAddress)->call('get_', function($err, $balance) use (&$promise) {
                 if ($err !== null) {
                     return response()->json(['error' => $err->getMessage()], 401);
                 }
